@@ -19,5 +19,5 @@ return function (App $app) {
         return "<h1> Hello World! </h1>";
     });
 
-    $app->get('/test', \App\Controllers\HomeController::class . ":home");
+    $app->get('/detect/[{username}]', \App\Controllers\HomeController::class . ":detect");
 };

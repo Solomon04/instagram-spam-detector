@@ -7,6 +7,7 @@
  */
 
 namespace App\Controllers;
+use App\Services\SpamDetection;
 use Psr\Container\ContainerInterface;
 
 
@@ -29,5 +30,12 @@ class HomeController
         // your code
         // to access items in the container... $this->container->get('');
         return $response;
+    }
+
+    public function detect($request, $response, $args)
+    {
+        $spam = new SpamDetection();
+        $score = number_format((float)$spam->detectSexBot($args['username'])*100, 2, '.', '') .'%';
+        return "<h1> $score </h1>";
     }
 }
